@@ -137,6 +137,8 @@ $reportDir/$ACCOUNT-costMonthlyEBS.json 2>>$reportDir/errors
 
 done
 
+unset AWS_PROFILE
+
 var=$(tar zcvf elastio$datenow.tar.gz elastiostats$datenow 2>&1)
 
 rm elastiostats$datenow -r -d
