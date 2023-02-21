@@ -3,11 +3,10 @@ Assessment script is used to collect some basic information from you AWS account
 
 Running the script is easy and doesn't need a lot of effort. However, if you have a lot of accounts it might take some time. To make it easier there is a separate script that supports bulk account execution, please see "Multiple Account Usage" paragraph. If you have a few accounts, you can use `single-account/assessment-script.sh`, guide on how to run it is in the "Single Account Usage" paragraph.
 
-## Prerequisites
+## Single Account Usage
 To run the script you need a Linux machine with configured AWS CLI.
 To setup connection  between AWS CLI and your AWS account run `aws configure` command and provide `AWS Access Key ID` and `AWS Secret Access Key`.
 
-## Single Account Usage
 1. Copy the script to the instance or alternatively you can create new file (e.g. script.sh) and copy the content of the `single-account/assessment-script.sh` to newly created file.
 2. Run `chmod +x script.sh` to make file executable.
 3. Run script `./script.sh`.
@@ -32,6 +31,8 @@ Please download the archive and send it to us.
 - s3:CreateBucket
 
 ## Multiple Account Usage
+To run the script you need a Linux machine with latest AWS CLI installed.
+
 1. Download `multiple-accounts/config.json` file.
 2. Fill in `config.json` file with:
  - `AWS Access Key ID`
