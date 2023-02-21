@@ -54,7 +54,7 @@ Config file will look similar to:
 3. Copy the `config.json` file to the instance or alternatively you can create new file `config.json` and copy the content of the file to newly created one.
 4. Copy the script to the instance or alternatively you can create new file (e.g. script.sh) and copy the content of the `multiple-accounts/assessment-script-bulk.sh` to newly created file.
 5. Run `chmod +x script.sh` to make file executable.
-6. Run script `./script.sh`.
+6. Run script `./script.sh`. Please note that `jq` will be installed if it is not already.
 
 As a result of the script run an archive will be created and uploaded to the S3 bucket, you will see the output with its location in the terminal:
 ```
