@@ -37,7 +37,7 @@ Please download the archive and send it to us.
  - `AWS Access Key ID`
  - `AWS Secret Access Key`.
  - The IAM role name that you can assume in order to access each of the accounts in your organization.
- - List of accounts you would like to analyze. To get the list of accounts run command `aws organizations list-accounts --output text --query 'Accounts[*].Id'`. Alternately you could leave accounts list empty, in this case script will query accounts from AWS. Please note, you should have `organizations:ListAccounts` permission to be able to query list of accounts.
+ - List of accounts you would like to analyze. To get the list of accounts run command `aws organizations list-accounts --output json --query 'Accounts[*].Id'`. Alternately you could leave accounts list empty, in this case script will query accounts from AWS. Please note, you should have `organizations:ListAccounts` permission to be able to query list of accounts.
 
 Config file will look similar to:
 ```
