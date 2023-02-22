@@ -1,5 +1,5 @@
 ## Summary
-Assessment script is used to collect some basic information from you AWS account, like count and size of EBS volumes and EC2 instances, EBS snapshots with infrormation about encryption and age, etc. This information will be used then to generate a vulnerability report for your organization.
+The Elastio assessment script is used to collect some basic information from your AWS account(s), like the number and size of EBS volumes and EC2 instances, EBS snapshots with information about encryption and age, etc. This information will be used then to generate a report for your organization identifying potential vulnerabilities and cost savings which you can realize with Elastio.
 
 Running the script is easy and doesn't need a lot of effort. However, if you have a lot of accounts it might take some time. To make it easier there is a separate script that supports bulk account execution, please see "Multiple Account Usage" paragraph. If you have a few accounts, you can use `single-account/assessment-script.sh`, guide on how to run it described in the "Single Account Usage" paragraph.
 
