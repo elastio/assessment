@@ -1,10 +1,10 @@
 ## Summary
-Assessment script is used to collect some basic information from you AWS account, like count and size of EBS volumes and EC2 instances, EBS snapshots list with infrormation about encryption and age, etc. This information will be used then to generate a vulnerability report for your organization.
+Assessment script is used to collect some basic information from you AWS account, like count and size of EBS volumes and EC2 instances, EBS snapshots with infrormation about encryption and age, etc. This information will be used then to generate a vulnerability report for your organization.
 
-Running the script is easy and doesn't need a lot of effort. However, if you have a lot of accounts it might take some time. To make it easier there is a separate script that supports bulk account execution, please see "Multiple Account Usage" paragraph. If you have a few accounts, you can use `single-account/assessment-script.sh`, guide on how to run it is in the "Single Account Usage" paragraph.
+Running the script is easy and doesn't need a lot of effort. However, if you have a lot of accounts it might take some time. To make it easier there is a separate script that supports bulk account execution, please see "Multiple Account Usage" paragraph. If you have a few accounts, you can use `single-account/assessment-script.sh`, guide on how to run it described in the "Single Account Usage" paragraph.
 
 ## Single Account Usage
-To run the script you need a Linux machine with configured AWS CLI.
+To run the script you need a Linux box with configured AWS CLI.
 To setup connection  between AWS CLI and your AWS account run `aws configure` command and provide `AWS Access Key ID` and `AWS Secret Access Key`.
 
 1. Copy the script to the instance or alternatively you can create new file (e.g. script.sh) and copy the content of the `single-account/assessment-script.sh` to newly created file.
@@ -16,7 +16,9 @@ As a result of the script run archive will be created and uploaded to the S3 buc
 upload: ./elastio1676898821.tar.gz to s3://elastio-assesment-1676898821/elastio1676898821.tar.gz
 ```
 
-Please download the archive and send it to us.
+Please download the archive and send it to us. 
+
+Note: Archive will also appear in the directory where script is locates for your convenience.
 
 **Permissions required to run the script:**
 - ec2:DescribeRegions
@@ -31,7 +33,7 @@ Please download the archive and send it to us.
 - s3:CreateBucket
 
 ## Multiple Account Usage
-To run the script you need a Linux machine with latest AWS CLI installed.
+To run the script you need a Linux box with latest AWS CLI installed.
 
 1. Download `multiple-accounts/config.json` file.
 2. Fill in `config.json` file with:
@@ -57,12 +59,16 @@ Config file will look similar to:
 5. Run `chmod +x script.sh` to make file executable.
 6. Run script `./script.sh`. Please note that `jq` will be installed if it is not already.
 
+The script will execute `aws configure` command and will create `~/.aws/config` file with profiles required to connect to your accounts.
+
 As a result of the script run an archive will be created and uploaded to the S3 bucket, you will see the output with its location in the terminal:
 ```
 upload: ./elastio1676898821.tar.gz to s3://elastio-assesment-1676898821/elastio1676898821.tar.gz
 ```
 
 Please download the archive and send it to us.
+
+Note: Archive will also appear in the directory where script is locates for your convenience.
 
 **Permissions required to run the script:**
 - organizations:ListAccounts
