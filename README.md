@@ -11,7 +11,7 @@ To setup connection  between AWS CLI and your AWS account run `aws configure` co
 2. Run `chmod +x script.sh` to make file executable.
 3. Run script `./script.sh`.
 
-As a result of the script run archive will be created and uploaded to the S3 bucket, you will see the output with its location in the terminal:
+As a result of running the script an archive file will be created and uploaded to an S3 bucket.  You will see the output with its location in the terminal:
 ```
 upload: ./elastio1676898821.tar.gz to s3://elastio-assesment-1676898821/elastio1676898821.tar.gz
 ```
