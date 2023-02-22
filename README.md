@@ -7,7 +7,7 @@ Running the script is easy and doesn't require a lot of effort. However, if you 
 To run the script you need a Linux box with configured AWS CLI.
 To setup connection  between AWS CLI and your AWS account run `aws configure` command and provide `AWS Access Key ID` and `AWS Secret Access Key`.
 
-1. Copy the script to the instance or alternatively you can create new file (e.g. script.sh) and copy the content of the `single-account/assessment-script.sh` to newly created file.
+1. Copy the script to the instance or alternatively you can create a new file (e.g. `script.sh`) and copy/paste the content of the `single-account/assessment-script.sh` to newly created file.
 2. Run `chmod +x script.sh` to make file executable.
 3. Run script `./script.sh`.
 
