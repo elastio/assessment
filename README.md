@@ -18,7 +18,7 @@ upload: ./elastio1676898821.tar.gz to s3://elastio-assesment-1676898821/elastio1
 
 Please download the archive and send it to us. 
 
-Note: Archive will also appear in the directory where script is locates for your convenience.
+Note: Archive will also appear in the directory where script is located, for your convenience in case you want to review what information is included in the archive before sending it to Elastio.
 
 **Permissions required to run the script:**
 - ec2:DescribeRegions
