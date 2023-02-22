@@ -33,7 +33,7 @@ Note: Archive will also appear in the directory where script is located, for you
 - s3:CreateBucket
 
 ## Multiple Account Usage
-To run the script you need a Linux box with latest AWS CLI installed.
+To run the script you need shell access to a Linux system with latest AWS CLI installed and configured.  It's not important where this system is located, it can be an EC2 instance, AWS CloudShell, or your local Linux workstation.
 
 1. Download `multiple-accounts/config.json` file.
 2. Fill in `config.json` file with:
