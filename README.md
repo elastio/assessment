@@ -87,8 +87,8 @@ Please download the archive and send it to us.
 Note: Archive will also appear in the directory where script is locates for your convenience.
 
 **For Windows:**
-1. Copy the script `single-account/assessment-script.ps1` to the Windows box.
-2. Open the context menu by clicking right mouse button on file and select `Run with PowerShell`.
+4. Copy the script `single-account/assessment-script.ps1` to the Windows box.
+5. Open the context menu by clicking right mouse button on file and select `Run with PowerShell`.
 
 The script will execute `aws configure` command and will create `~/.aws/config` file with profiles required to connect to your accounts.
 As a result of running the script an archive file will be created and stored in the directory where script is located.  You will see the output with its location in the terminal:
