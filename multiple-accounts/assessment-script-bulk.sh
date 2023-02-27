@@ -69,7 +69,7 @@ mkdir $reportDir
 echo "Getting list of snapshots."
 for REGION in $(aws ec2 describe-regions --output text --query 'Regions[].[RegionName]' 2>>$reportDir/errors)
 do 
-aws ec2 describe-snapshots --owner self --region $REGION --output json > $reportDir/$ACCOUNT-snapshots-$(echo $REGION | sed 's/-//g').json 2>>$reportDir/errors
+aws ec2 describe-snapshots --owner self --region $REGION --output json > $reportDir/snapshots-$(echo $REGION | sed 's/-//g').json 2>>$reportDir/errors
 done
 
 echo "Getting snapshot permissions."
@@ -80,7 +80,7 @@ do
 PERM=$(aws ec2 describe-snapshot-attribute --region $REGION --snapshot-id $SNAP --attribute createVolumePermission --output text 2>>$reportDir/errors)
 if [[ $PERM == *"all"* ]]
 then
-echo $PERM | sed 's/ CREATEVOLUMEPERMISSIONS all//'g >> $reportDir/$ACCOUNT-snapshotPermissions.csv
+echo $PERM | sed 's/ CREATEVOLUMEPERMISSIONS all//'g >> $reportDir/snapshotPermissions.csv
 fi
 done
 done
@@ -88,13 +88,13 @@ done
 echo "Getting list of EBS."
 for REGION in $(aws ec2 describe-regions --output text --query 'Regions[].[RegionName]' 2>>$reportDir/errors)
 do 
-aws ec2 describe-volumes --region $REGION --output json > $reportDir/$ACCOUNT-ebs-$(echo $REGION | sed 's/-//g').json 2>>$reportDir/errors
+aws ec2 describe-volumes --region $REGION --output json > $reportDir/ebs-$(echo $REGION | sed 's/-//g').json 2>>$reportDir/errors
 done
 
 echo "Getting list of EC2."
 for REGION in $(aws ec2 describe-regions --output text --query 'Regions[].[RegionName]' 2>>$reportDir/errors)
 do 
-aws ec2 describe-instances --region $REGION --output json > $reportDir/$ACCOUNT-ec2-$(echo $REGION | sed 's/-//g').json 2>>$reportDir/errors
+aws ec2 describe-instances --region $REGION --output json > $reportDir/ec2-$(echo $REGION | sed 's/-//g').json 2>>$reportDir/errors
 done
 
 echo "Getting list of CMKs."
@@ -105,7 +105,7 @@ do
 KEY=$(aws kms describe-key --key-id  $ID --query 'KeyMetadata.{ID:KeyId,Manager:KeyManager}' --output text --region $REGION 2>>$reportDir/errors)
 if [[ $KEY == *"CUSTOMER"* ]]
 then
-echo $KEY | sed 's/ CUSTOMER//'g >> $reportDir/$ACCOUNT-cmk-$(echo $REGION | sed 's/-//g').csv
+echo $KEY | sed 's/ CUSTOMER//'g >> $reportDir/cmk-$(echo $REGION | sed 's/-//g').csv
 fi
 done
 done
@@ -115,25 +115,25 @@ echo "Getting costs info."
 aws ce get-cost-and-usage --output json --time-period Start=$oneWeek,End=$today \
 --metrics "UnblendedCost" "UsageQuantity" --granularity DAILY --group-by Type=DIMENSION,Key=USAGE_TYPE \
 --filter '{ "Dimensions": { "Key": "USAGE_TYPE_GROUP", "Values": [ "EC2: EBS - Snapshots" ] } }' > \
-$reportDir/$ACCOUNT-costDailySnapshot.json 2>>$reportDir/errors
+$reportDir/costDailySnapshot.json 2>>$reportDir/errors
 
 #get snapshot monthly costs
 aws ce get-cost-and-usage --output json --time-period Start=$twoMonths,End=$lastDayMonth \
 --metrics "UnblendedCost" "UsageQuantity" --granularity MONTHLY --group-by Type=DIMENSION,Key=USAGE_TYPE \
 --filter '{ "Dimensions": { "Key": "USAGE_TYPE_GROUP", "Values": [ "EC2: EBS - Snapshots" ] } }' > \
-$reportDir/$ACCOUNT-costMonthlySnapshot.json 2>>$reportDir/errors
+$reportDir/costMonthlySnapshot.json 2>>$reportDir/errors
 
 #get ebs daily costs
 aws ce get-cost-and-usage --output json --time-period Start=$oneWeek,End=$today \
 --metrics "UnblendedCost" "UsageQuantity" --granularity DAILY --group-by Type=DIMENSION,Key=USAGE_TYPE \
 --filter '{ "Dimensions": { "Key": "USAGE_TYPE_GROUP", "Values": [ "EC2: EBS - SSD(gp2)", "EC2: EBS - SSD(gp3)", "EC2: EBS Optimized" ] } }' > \
-$reportDir/$ACCOUNT-costDailyEBS.json 2>>$reportDir/errors
+$reportDir/costDailyEBS.json 2>>$reportDir/errors
 
 #get ebs monthly costs
 aws ce get-cost-and-usage --output json --time-period Start=$twoMonths,End=$lastDayMonth \
 --metrics "UnblendedCost" "UsageQuantity" --granularity MONTHLY --group-by Type=DIMENSION,Key=USAGE_TYPE \
 --filter '{ "Dimensions": { "Key": "USAGE_TYPE_GROUP", "Values": [ "EC2: EBS - SSD(gp2)", "EC2: EBS - SSD(gp3)", "EC2: EBS Optimized" ] } }' > \
-$reportDir/$ACCOUNT-costMonthlyEBS.json 2>>$reportDir/errors
+$reportDir/costMonthlyEBS.json 2>>$reportDir/errors
 
 done
 
